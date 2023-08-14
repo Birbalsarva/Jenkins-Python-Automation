@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Run Unit Test') {
             steps {
-                sh 'python test_website_loading.py'
+                sh 'python3 test_website_loading.py'
             }
         }
     }
