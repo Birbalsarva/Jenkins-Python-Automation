@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
     environment {
@@ -6,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: "<your-repo-url>", branch: "main"  // Replace with your branch name if needed
+                git url: 'https://github.com/Birbalsarva/Bano_Devops_Task_2.git', branch: 'main'
             }
         }
         stage('Install Dependencies') {
