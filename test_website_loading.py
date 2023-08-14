@@ -5,6 +5,7 @@ class TestWebsiteLoading(unittest.TestCase):
     def setUp(self):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.binary_location = "/usr/bin/google-chrome"  # Update with the correct path
+        chrome_options.add_argument("--headless")  # Add this line for headless mode
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.get("https://atg.world")
 
