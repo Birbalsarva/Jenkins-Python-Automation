@@ -1,18 +1,25 @@
 import unittest
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 class TestWebsiteLoading(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path='/path/to/chromedriver') # Update with your ChromeDriver path
-    
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')  # Run in headless mode (no GUI)
+        chrome_options.add_argument('--no-sandbox')  # Required for running as root user
+        
+        self.driver = webdriver.Chrome(options=chrome_options)
+        self.driver.implicitly_wait(10)
+        
     def test_website_loads(self):
-        self.driver.get('https://atg.world')
-        title = self.driver.title
-        self.assertIn('ATG World', title)  # Change this based on the expected title of the website
+        self.driver.get("https://atg.world")  # Replace with your website URL
+        
+        # Check if the website title contains "ATG"
+        self.assertIn("ATG", self.driver.title)
         
     def tearDown(self):
         self.driver.quit()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
 
