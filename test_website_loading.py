@@ -8,7 +8,9 @@ class TestWebsiteLoading(unittest.TestCase):
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--headless")
-        self.driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", options=chrome_options)
+        chrome_options.add_argument("--remote-debugging-address=0.0.0.0")
+        chrome_options.add_argument("--remote-debugging-port=9222")
+        self.driver = webdriver.Chrome(options=chrome_options, executable_path="/usr/local/bin/chromedriver")
         self.driver.get("https://atg.world")
 
     def test_website_loading(self):
@@ -21,5 +23,3 @@ class TestWebsiteLoading(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-
