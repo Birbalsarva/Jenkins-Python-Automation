@@ -1,3 +1,4 @@
+import unittest
 from selenium import webdriver
 
 class TestWebsiteLoading(unittest.TestCase):
@@ -6,11 +7,11 @@ class TestWebsiteLoading(unittest.TestCase):
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--remote-debugging-address=0.0.0.0')
-        chrome_options.add_argument('--remote-debugging-port=9222')
         self.driver = webdriver.Chrome(options=chrome_options)
 
-    # Rest of your test methods
+    def test_load_website(self):
+        self.driver.get("https://atg.world")
+        self.assertIn("atg.world", self.driver.title)
 
     def tearDown(self):
         self.driver.quit()
