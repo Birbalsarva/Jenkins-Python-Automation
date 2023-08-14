@@ -4,20 +4,21 @@ pipeline {
     stages {
         stage('Checkout SCM') {
             steps {
-                  git url: "https://github.com/Birbalsarva/Bano_Devops_Task_2.git", branch: "main"
+                checkout scm
             }
         }
         
         stage('Install Dependencies') {
             steps {
                 sh 'python3.10 -m venv myenv'
+                sh 'source myenv/bin/activate' // Update this line
                 sh 'myenv/bin/pip install -r requirements.txt'
             }
         }
         
         stage('Run Unit Test') {
             steps {
-                sh 'myenv/bin/python -m pytest test_website_loading.py'
+                sh '/var/lib/jenkins/workspace/unit_test/myenv/bin/python -m pytest test_website_loading.py' // Update this line
             }
         }
     }
