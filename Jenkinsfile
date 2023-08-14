@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PATH = "/usr/local/bin/chromedriver" // Add the path to Chromedriver here
+        PATH = "/usr/local/bin/chromedriver:$PATH" 
     }
     stages {
         stage('Checkout') {
