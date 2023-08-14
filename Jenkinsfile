@@ -1,13 +1,9 @@
-
 pipeline {
     agent any
-    environment {
-        PATH = "/usr/local/bin:${env.PATH}"  // Include the directory containing chromedriver
-    }
     stages {
-        stage('Checkout') {
+        stage('Checkout SCM') {
             steps {
-                git url: 'https://github.com/Birbalsarva/Bano_Devops_Task_2.git', branch: 'main'
+                checkout scm
             }
         }
         stage('Install Dependencies') {
