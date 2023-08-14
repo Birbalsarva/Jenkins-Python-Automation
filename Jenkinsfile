@@ -1,25 +1,31 @@
 pipeline {
     agent any
-    
+
     stages {
-        stage('Checkout SCM') {
+        stage('Checkout') {
             steps {
-                  git url: "https://github.com/Birbalsarva/Bano_Devops_Task_2.git", branch: "main"
+                 git url: "https://github.com/Birbalsarva/Bano_Devops_Task_2.git", branch: "main"
             }
         }
-        
-        stage('Install Dependencies') {
+
+        stage('Build and Test') {
             steps {
-                sh 'python3.10 -m venv myenv'
-                sh 'source myenv/bin/activate' // Update this line
-                sh 'myenv/bin/pip install -r requirements.txt'
-            }
-        }
-        
-        stage('Run Unit Test') {
-            steps {
-                sh '/var/lib/jenkins/workspace/unit_test/myenv/bin/python -m pytest test_website_loading.py' // Update this line
+                sh '''
+                    python3.10 -m venv myenv
+                    source myenv/bin/activate
+                    pip install -r requirements.txt
+                    python test_website_loading.py
+                '''
             }
         }
     }
+
+    post {
+        always {
+            sh 'deactivate' // Deactivate virtual environment
+        }
+    }
 }
+
+                 
+
