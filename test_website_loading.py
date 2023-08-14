@@ -1,10 +1,10 @@
 import unittest
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 class TestWebsiteLoading(unittest.TestCase):
     def setUp(self):
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.binary_location = "/usr/bin/google-chrome"  # Replace with your actual path to Chrome binary
+        chrome_options = Options()
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--headless")
