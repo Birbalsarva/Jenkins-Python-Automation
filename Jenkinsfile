@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git url: "https://github.com/Birbalsarva/Bano_Devops_Task_2.git", branch: "main"
+                
             }
         }
         stage('Install Dependencies') {
