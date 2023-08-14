@@ -1,20 +1,17 @@
-import unittest
 from selenium import webdriver
+import unittest
 
 class TestWebsiteLoading(unittest.TestCase):
     def setUp(self):
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-gpu')
-        self.driver = webdriver.Chrome(options=chrome_options)
+        self.driver = webdriver.Chrome()
 
-    def test_load_website(self):
+    def test_website_loading(self):
         self.driver.get("https://atg.world")
-        self.assertIn("atg.world", self.driver.title)
+        self.assertEqual("ATG - Art & Technology Group", self.driver.title)
 
     def tearDown(self):
         self.driver.quit()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
+
