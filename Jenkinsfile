@@ -11,13 +11,13 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh 'python3.10 -m venv myenv'
-                sh 'myenv/bin/pip install -r requirements.txt'
+                sh 'source myenv/bin/activate && pip install -r requirements.txt'
             }
         }
         
         stage('Run Unit Test') {
             steps {
-                sh 'myenv/bin/pytest test_website_loading.py'
+                sh 'source myenv/bin/activate && pytest test_website_loading.py'
             }
         }
     }
