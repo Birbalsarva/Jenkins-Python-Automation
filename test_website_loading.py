@@ -1,9 +1,11 @@
 import unittest
-import xmlrunner  # Make sure to import the xmlrunner module
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import xmlrunner
 
 class TestWebsiteLoading(unittest.TestCase):
     def setUp(self):
-        chrome_options = webdriver.ChromeOptions()
+        chrome_options = Options()
         chrome_options.add_argument('--headless')  # Run in headless mode (no GUI)
         chrome_options.add_argument('--no-sandbox')  # Required for running as root user
         
@@ -20,5 +22,5 @@ class TestWebsiteLoading(unittest.TestCase):
         self.driver.quit()
 
 if __name__ == "__main__":
-    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))  # Save test results in the 'test-reports' directory
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))
 
