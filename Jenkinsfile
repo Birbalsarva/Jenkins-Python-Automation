@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh 'python3.10 -m venv myenv'
                 sh 'myenv/bin/pip install -r requirements.txt'
-                sh 'myenv/bin/python -m unittest test_website_loading.py'
+                sh 'myenv/bin/python -m unittest discover -s . -p "test_*.py" -v --resultxml=test-reports/test_results.xml'
             }
         }
     }
@@ -23,7 +23,7 @@ pipeline {
         }
         
         success {
-            junit '**/unittest-*.xml'
+            junit 'test-reports/test_results.xml'
         }
     }
 }
