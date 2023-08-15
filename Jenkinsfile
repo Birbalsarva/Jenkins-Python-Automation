@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                 git url: "https://github.com/Birbalsarva/Bano_Devops_Task_2.git", branch: "main"
+                 git url: "https://github.com/Birbalsarva/Banao_Devops_Task_2.git", branch: "main"
             }
         }
         
