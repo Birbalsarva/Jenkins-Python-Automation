@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: "https://github.com/Birbalsarva/Bano_Devops_Task_2.git", branch: "main"
+                checkout scm
             }
         }
         
@@ -12,9 +12,8 @@ pipeline {
             steps {
                 script {
                     sh 'python3.10 -m venv myenv'
-                    sh 'source myenv/bin/activate'  // Activate the virtual environment
-                    sh 'myenv/bin/pip install -r requirements.txt'
-                    sh 'xvfb-run myenv/bin/python -m unittest test_website_loading.py'
+                    sh 'bash -c "source myenv/bin/activate"'  // Activate the virtual environment using Bash
+                    sh 'xvfb-run bash -c "myenv/bin/python -m unittest test_website_loading.py"'  // Run tests using Bash
                 }
             }
         }
@@ -22,7 +21,7 @@ pipeline {
     
     post {
         always {
-            sh 'myenv/bin/deactivate || true'
+            sh 'bash -c "myenv/bin/deactivate || true"'  // Deactivate the virtual environment using Bash
         }
     }
 }
