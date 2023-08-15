@@ -21,5 +21,4 @@ class TestWebsiteLoading(unittest.TestCase):
         self.driver.quit()
 
 if __name__ == "__main__":
-    unittest.main()
-
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))
