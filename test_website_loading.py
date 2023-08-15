@@ -1,7 +1,6 @@
 import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import xmlrunner
 
 class TestWebsiteLoading(unittest.TestCase):
     def setUp(self):
@@ -22,5 +21,6 @@ class TestWebsiteLoading(unittest.TestCase):
         self.driver.quit()
 
 if __name__ == "__main__":
-    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))
+    unittest.main()
+
 
