@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                 git url: "https://github.com/Birbalsarva/Banao_Devops_Task_2.git", branch: "main"
+                git url: "https://github.com/Birbalsarva/Banao_Devops_Task_2.git", branch: "main"
             }
         }
         
@@ -20,6 +20,10 @@ pipeline {
     post {
         always {
             sh 'myenv/bin/deactivate || true'
+        }
+        
+        success {
+            junit '**/unittest-*.xml'
         }
     }
 }
