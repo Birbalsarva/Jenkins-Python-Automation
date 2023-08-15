@@ -1,10 +1,11 @@
+
 pipeline {
     agent any
 
     stages {
         stage('Checkout SCM') {
             steps {
-                 git url: "https://github.com/Birbalsarva/Bano_Devops_Task_2.git", branch: "main"
+                checkout scm
             }
         }
         
@@ -13,7 +14,9 @@ pipeline {
                 script {
                     sh 'python3.10 -m venv myenv'
                     sh 'source myenv/bin/activate'
+                    sh 'pip install -r requirements.txt' // You can include this line to install required dependencies
                     sh 'xvfb-run -a myenv/bin/python -m unittest test_website_loading.py --verbose'
+                    sh 'deactivate' // Deactivate the virtual environment
                 }
             }
         }
@@ -21,7 +24,8 @@ pipeline {
 
     post {
         always {
-            sh 'bash -c myenv/bin/deactivate || true'
+            sh 'true' // Do nothing, this is just to avoid the error on the following line
+            sh 'myenv/bin/deactivate' // Deactivate the virtual environment
         }
     }
 }
