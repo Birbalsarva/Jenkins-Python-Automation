@@ -12,7 +12,7 @@ class TestWebsiteLoading(unittest.TestCase):
         self.driver.implicitly_wait(10)
         
     def test_website_loads(self):
-        self.driver.get("https://atg.world")  # Replace with your website URL
+        self.driver.get("https://atg.world") 
         
         # Check if the website title contains "ATG"
         self.assertIn("ATG", self.driver.title)
